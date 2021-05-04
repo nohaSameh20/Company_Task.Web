@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Poppins:400,500,600,700|Roboto:400,500"
+    rel="stylesheet" />
+  <link href="https://cdn.materialdesignicons.com/3.0.39/css/materialdesignicons.min.css" rel="stylesheet" />
+ 
+  <!-- PLUGINS CSS STYLE -->
+  <title>Company</title>
+</head>
+
+<body class="sidebar-fixed sidebar-dark sidebar-minified header-fixed header-light" id="body">
+
+  <div class="mobile-sticky-body-overlay"></div>
+
+  <div class="wrapper">
+
+    <aside class="left-sidebar bg-sidebar">
+      <div id="sidebar" class="sidebar sidebar-with-footer">
+        <div class="sidebar-scrollbar">
+
+          <!-- sidebar menu -->
+          <ul class="nav sidebar-inner" id="sidebar-menu">
+            <li class="has-sub">
+              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#dashboard"
+                aria-expanded="false" aria-controls="dashboard">
+                <i class="mdi mdi-view-dashboard-outline"></i>
+                <span class="nav-text">Dashboard</span> <b class="caret"></b>
+              </a>
+              <ul class="collapse" id="dashboard" data-parent="#sidebar-menu">
+              </ul>
+            </li>
+
+            <li class="has-sub">
+              <a class="sidenav-item-link" href="javascript:void(0)">
+                <i class="mdi mdi-folder-multiple-outline"></i>
+                <span class="nav-text">Tab1</span>
+              </a>
+            </li>
+
+
+            <li class="has-sub">
+              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#charts"
+                aria-expanded="false" aria-controls="charts">
+                <i class="mdi mdi-chart-pie"></i>
+                <span class="nav-text">Tab2</span>
+              </a>
+            </li>
+
+            <li class="has-sub">
+              <a class="sidenav-item-link" href="javascript:void(0)" data-toggle="collapse" data-target="#pages"
+                aria-expanded="false" aria-controls="pages">
+                <i class="mdi mdi-image-filter-none"></i>
+                <span class="nav-text">Tab3</span>
+              </a>
+            </li>
+
+          </ul>
+
+        </div>
+
+      </div>
+    </aside>
+
+
+
+    <div class="page-wrapper">
+      <!-- Header -->
+      <header class="main-header " id="header">
+        <nav class="navbar navbar-static-top navbar-expand-lg">
+
+          <div class="search-form d-none d-lg-inline-block">
+            <ul class="nav navbar-nav" style="color: black;">
+              <li style="margin-right: 100px;">
+                <h4>Energy Consumption</h4>
+              </li>
+              <li style="margin-right: 100px;">
+                <h4>Active Power</h4>
+              </li>
+              <li style="margin-right: 100px;">
+                <h4>Power Factor</h4>
+              </li>
+              <li style="margin-right: 100px;">
+                <h4>Harmonics</h4>
+              </li>
+              <li>
+                <h4>SAGSWELL</h4>
+              </li>
+            </ul>
+
+          </div>
+        </nav>
+      </header>
+
+      <div class="content-wrapper">
+        <div class="content">
+          <!-- Top Statistics -->
+          <div class="row">
+            <div class="col-xl-3 col-sm-6">
+              <div class="card card-mini mb-4">
+                <div class="card-body">
+                  <h6 class="mb-1">Total Consumptions</h6>
+                  <p style="color: black;">{{TotalConsumption}}</p>
+                 
+                  <div class="chartjs-wrapper">
+                    <canvas baseChart width="1000" height="1000"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [chartType]="lineChartType"
+                     >
+                   </canvas>
+                  </div>
+                 
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+              <div class="card card-mini  mb-4">
+                <div class="card-body">
+                  <h2 class="mb-1">Voltage</h2>
+                  <hr>
+                 
+                  <div class="chartjs-wrapper">
+                   <div style="display: inline-block;width: 50%;float: right;">
+                    <canvas baseChart width="1000" height="1000"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [chartType]="lineChartType"
+                     >
+                   </canvas>
+                    </div>
+                   <div style="display: inline-block;width: 50%">  
+                    <p>{{MaxVoltage}} v</p>
+                    <p style="color: #ffa7c2;">Max Voltage</p>
+                    <br>
+                    <p>{{AvgVoltage}} v</p>
+                    <p style="color: #ffa7c2;">Avg Voltage</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+              <div class="card card-mini mb-4">
+                <div class="card-body">
+                  <h2 class="mb-1">Current</h2>
+                  <hr>
+                 
+                  <div class="chartjs-wrapper">
+                   <div style="display: inline-block;width: 50%;float: right;">  <canvas baseChart width="1000" height="1000"
+                    [datasets]="lineChartData"
+                    [labels]="lineChartLabels"
+                    [chartType]="lineChartType"
+                     >
+                   </canvas></div>
+                   <div style="display: inline-block;width: 50%">  
+                    <p>{{MaxCurrent}} v</p>
+                    <p style="color: #ffa7c2;">Max Current</p>
+                    <br>
+                    <p>{{AvgCurrent}} v</p>
+                    <p style="color: #ffa7c2;">Avg Current</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-xl-3 col-sm-6">
+              <div class="card card-mini mb-4">
+                <div class="card-body">
+                  <h2 class="mb-1">Statistics</h2>
+                  <hr>
+                   <p>{{AvgConSumption}} v</p>
+                   <p style="color: #facd89;">Avg ConSumption</p>
+                   <br>
+                  <div class="chartjs-wrapper">
+                   <div style="display: inline-block;width: 52%;float: right;"> 
+                    <p style="color: #ffa7c2;">Lowest</p>
+                    <br>
+                    <p>{{MinConSumption}} v</p>
+                  </div>
+                   <div style="display: inline-block;width: 46%">  
+                    <p style="color: #ffa7c2;">Highest</p>
+                    <br>
+                    <p>{{MaxConSumption}} v</p>
+                  </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row">
+            <div class="col-xl-12 col-md-12">
+              <!-- Sales Graph -->
+              <div class="card card-default" data-scroll-height="675">
+                <div class="card-header">
+                  <h2>Energy Distribution</h2>
+                </div>
+                <div class="card-body">
+                  <canvas baseChart width="1000" height="1000"
+                  [datasets]="lineChartData"
+                  [labels]="lineChartLabels"
+                  [chartType]="lineChartType"
+                   >
+                 </canvas>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+
+
+        </div>
+
+
+
+
+      </div>
+
+      <footer class="footer mt-auto">
+        <div class="copyright bg-white">
+          <p>
+            &copy; <span id="copy-year">2019</span> Copyright
+            <a class="text-primary" href="" target="_blank">Noha</a>.
+          </p>
+        </div>
+        <script>
+          var d = new Date();
+          var year = d.getFullYear();
+          document.getElementById("copy-year").innerHTML = year;
+        </script>
+
+      </footer>
+
+    </div>
+  </div>
+
+</body>
+
+</html>
